@@ -9,8 +9,14 @@ import java.util.ArrayList;
 
 public class Restaurant {
     Table[] tables;
+    public Restaurant(int amountOfTables){
+        tables = new Table[amountOfTables];
+        for (int i = 0; i < amountOfTables; i++) {
+            tables[i] = new Table();
+        }
+    }
     
-    TableBooking makeTableBooking(LocalDate day, int numOfGuests) throws NoTableException{
+    public TableBooking makeTableBooking(LocalDate day, int numOfGuests) throws NoTableException{
         int numOfGuestsRemaining = numOfGuests;
         ArrayList<Table> bookedTables = new ArrayList<Table>(0);
         for (int i = 0; i < tables.length; i++){

@@ -3,9 +3,11 @@ package hotel.restaurant;
 import hotel.reservation.Bookable;
 
 public class Table implements Bookable {
-    boolean available;
+    boolean available = true;
     int nr;
-    int amountOfPeople;
+    int amountOfPeople = 2;
+
+
 
 
     public boolean availability(){
