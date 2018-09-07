@@ -12,7 +12,7 @@ public class Restaurant {
     public Restaurant(int amountOfTables){
         tables = new Table[amountOfTables];
         for (int i = 0; i < amountOfTables; i++) {
-            tables[i] = new Table();
+            tables[i] = new Table(i+1);
         }
     }
     
@@ -24,7 +24,7 @@ public class Restaurant {
                 numOfGuestsRemaining = numOfGuestsRemaining - tables[i].amountOfPeople;
                 //System.out.println(numOfGuestsRemaining);
                 bookedTables.add(tables[i]);
-                System.out.println("We booked table "+i);
+                System.out.println("We booked table "+ tables[i].nr);
                 tables[i].available = false;
                 if (numOfGuestsRemaining <= 0){
                     break;
