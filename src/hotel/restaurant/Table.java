@@ -6,6 +6,9 @@ public class Table implements Bookable {
     boolean available = true;
     int nr;
     int amountOfPeople = 2;
+    public Table(int nr){
+        this.nr = nr;
+    }
 
 
 
