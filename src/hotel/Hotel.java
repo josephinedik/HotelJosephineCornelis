@@ -10,29 +10,27 @@ import java.util.ArrayList;
 public class Hotel {
     public Restaurant restaurant;
     String name;
-    Room[] rooms;
+    SleepingRoom[] rooms;
     public Hotel(String name, int amountOfRooms, int amountOfTables){
         this.restaurant = new Restaurant(amountOfTables);
         this.name = name;
-        this.rooms = new Room[amountOfRooms];
+        this.rooms = new SleepingRoom[amountOfRooms];
         for (int i = 0; i < amountOfRooms; i++) {
             rooms[i] = new SleepingRoom(i+1);
         }
-        ((SleepingRoom)rooms[0]).amountOfPeople = 5;
-        ((SleepingRoom)rooms[1]).amountOfPeople = 5;
+        rooms[0].amountOfPeople = 5;
+        rooms[1].amountOfPeople = 5;
     }
 
     public RoomBooking makeRoomBooking(LocalDate checkin, LocalDate checkout, int numOfGuests) throws NoRoomException {
         int numOfGuestsRemaining = numOfGuests;
-        ArrayList<Room> bookedRooms = new ArrayList<Room>(0);
+        ArrayList<SleepingRoom> bookedRooms = new ArrayList<SleepingRoom>(0);
         for (int i = 0; i < rooms.length; i++){
             if (numOfGuestsRemaining <= 0){
                 break;
             }
-            if (((SleepingRoom)rooms[i]).available){
-                numOfGuestsRemaining = numOfGuestsRemaining - ((SleepingRoom)rooms[i]).amountOfPeople;
-                //System.out.println(numOfGuestsRemaining);
-
+            if (rooms[i].available){
+                numOfGuestsRemaining = numOfGuestsRemaining - rooms[i].amountOfPeople;
                 bookedRooms.add(rooms[i]);
             }
         }
@@ -42,8 +40,8 @@ public class Hotel {
         }
 
         for (int i = 0; i < bookedRooms.size(); i++) {
-            ((SleepingRoom)bookedRooms.get(i)).available = false;
-            System.out.println("We booked room "+ ((SleepingRoom)bookedRooms.get(i)).number);
+            bookedRooms.get(i).available = false;
+            System.out.println("We booked room "+ bookedRooms.get(i).number);
         }
 
         RoomBooking roomBooking = new RoomBooking(checkin, checkout, bookedRooms);
